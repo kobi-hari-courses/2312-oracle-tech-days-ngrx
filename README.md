@@ -56,6 +56,27 @@ So actions can trigger 2 very different things
 2. An action can be handled by an effect, to perform an asynchronous operation and produce a new action.
 
    
+## Signal Store
+In Angular 16, the team introduced a new concept: `signal`. This new entity comes to replace the - rather completed - observable in some specific scenarios. It is important to understand that signals do not replace observables completely. There are many scenarios where there is no alternative to RxJS, and it will always have merit. But for cases where our observables are actually synchronious, signals may be a great replacement because they are much simpler. 
+
+Specifically, signals are great to represent the current state of a component. It is much easier for binding. It has much easier syntax for computed data that depends on several pieces of changing data. 
+
+Signal stores are an addition to the angular's feature. In my opinion - the signal store completes this feature and makes it a lot more usable. The signal store is a "baby" store. It is much easier to define it. It does not use "actions" and "reducers", instead they use updater methods. It uses computed signals instead of selectors, and it has the ability to be extended using `custom features`. 
+
+### Creating a signal store
+Signal stores take "functional programming" on steriods. There are no classes, objects, everything is done using a function. You call the `signalStore` function in order to create a new store type. You pass functions as arguments, each of these functions extend the store. So you have functions that take functions as arguments, and produce richer functions. The holy grail of functional programming. 
+
+To extend the signal store you can use one of the following 4 functions: 
+1. `withState` adds new slices of state to the store. The store will automatically define a property of type computed signal for each property of the state. 
+2. `withComputed` adds more computed signals, so you can take any signal that was previously defined (either as direct state, or computed value) and derive a new computed value from it.
+3. `withMethods` adds methods to the store. These are methods that users can call, and that pissibly change the state. Think of them as action+reducer together. There are 3 types of actions that exist
+    - Synchronous functions: Take arguments, perform changes to the state instantly, and return.
+    - async promise functions: Take arguments, perform operation using `async await` possibly changing the state varius times along the way
+    - rxMethod functions: The arguments as observables, an using operators convert them into asynchronous side effects, possibly changing the state every now and then. These are the closest thing to an effect.
+4. `withHooks` allows you to react to 2 events in the lifecycle of a signal store: `onInit` and `onDestroy`. There are 2 ways you can react to them
+    - By performing a one time operation, for example log, allocate a resource, or freeing it at the end. Subscribing or unsubscribing to external observable. And so on.
+    - By defining a "signal effect". A method that relies on signals, and that is re-executed every time any of the signals it relies on, change.
+  
 
 
 
