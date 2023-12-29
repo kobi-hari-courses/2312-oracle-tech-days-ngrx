@@ -1,7 +1,7 @@
 <img src="./images/oracle-tech-days.png" Height="80"><img src="./images/title.png" Height="80"><img src="./images/john-bryce.png" Height="80">
 
 # NgRx New with Signals @ Oracle Tech Days 2023
-* By Kobi Hari (30/12/2023) *
+* By Kobi Hari (30/12/2023)
 
 ## Contact me
 Please feel free to contact me for questions, or just to have a chat :-)
