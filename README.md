@@ -1,4 +1,10 @@
 # Orace Teck Days 2023 - NgRx new
+
+|   |    |  
+|-------------- | -------------- 
+| Our Project    | [here](./project/ngrx-new/)     |
+| Our Presentation    | [here](./presentation/NgRx%20Signals%20Store.pdf)     |
+
 ## About today
 In this seminar, we will talk about `Redux`. Specifically, we will discuss one, very popular, implementation of redux for Anguar: the `NgRx` suite. What special about this suite is the approach it takes to `Redux`. It combines the principals of `Redux` with Functional Programming, and Reactivity, to form an elegant solution.
 
