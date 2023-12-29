@@ -1,6 +1,4 @@
-<img src="./images/oracle-tech-days.png" Height="120">
-<img src="./images/title.png" Height="120">
-<img src="./images/john-bryce.png" Height="120">
+<img src="./images/oracle-tech-days.png" Height="80"><img src="./images/title.png" Height="80"><img src="./images/john-bryce.png" Height="80">
 
 # NgRx New with Signals @ Oracle Tech Days 2023
 * By Kobi Hari (30/12/2023) *
