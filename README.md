@@ -77,6 +77,28 @@ To extend the signal store you can use one of the following 4 functions:
     - By performing a one time operation, for example log, allocate a resource, or freeing it at the end. Subscribing or unsubscribing to external observable. And so on.
     - By defining a "signal effect". A method that relies on signals, and that is re-executed every time any of the signals it relies on, change.
   
+### Signal Store Custom features
+The 4 methods:  `withState`, `withComputed`, `withHooks` and `withMethods` are called "feature". A feature is a function that takes a signal store and enhances it, effectively creating a new, more powerful, store. In a way, a feature does to a store what reducers do to state. When you create a signal store, you create an empty one with place holders to 4 things: 
+1. state slices
+2. computed signals
+3. methods
+4. hook implementation
+
+Each `withXXX` method, takes a store and changes it a little bit
+1. `withState` adds more slices, and creates computed signals to each property and sub property of them
+2. `withComputed` adds more computed signals, based on previous computed signals.
+3. `withMethods` adds methods
+4. `withHooks` adds implementation to the hooks. Notice that if you add more than one hook to the same events, they will all be executed in a sequence.
+
+`@ngrx/signals` provide you with another, more higher level, feature: `withEntities`. It defines a slice of state holding mapping between id and entity. I then defines 3 computed signals that return all the ids, all the entities, and the mapping. It defines a few methods to add, modify and remove an entity. It adds hooks to initialize the set of entities. So it uses the primitive features to produce a higher level feature.
+
+And the best thing is... you can add custom features too. You can create functions, that use other - more primitive - features, to produce your own new feature, and reuse it between many stores. Here are some examples for features that the community has already created:
+- `withUndoRedu` - adds the methods `undo` and `redo` to move back and forth in the state. Effectively allowing you to undo any change.
+- `withCallState` - imaging that you have many places where you hold date from a server and you need to reprent states where the data is valid, when it is pending because you are now waiting for data, and when it is faulted becuase the server call produced an error. This feature adds a `load` method, and `isLoading`, `isLoaded` and `isFaulted` computed signals.
+
+You know - I am pretty sure you can think of many more.
+
+I did - In this seminar I have created a custom feature that connects the store to the redux devtools :-)
 
 
 
