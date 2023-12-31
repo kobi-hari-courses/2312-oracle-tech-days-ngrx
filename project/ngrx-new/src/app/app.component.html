@@ -1,3 +1,18 @@
 <app-toolbar caption="Quiz Box App" icon="home"></app-toolbar>
 <div class="main">
+  @if (store.isDone()) { 
+    <app-done [correct]="store.correctCount()" [total]="store.questionsCount()"></app-done>
+  } @else {
+  <app-progress
+    [value]="store.indexOfCurrentQuestion()"
+    [of]="store.questionsCount()"
+  ></app-progress>
+  <app-question-presenter
+    [question]="store.currentQuestion()"
+    (answered)="store.answerCurrentQuestion($event)"
+  ></app-question-presenter>
+  <button mat-raised-button color="primary" (click)="store.restart()">
+    Restart
+  </button>
+  }
 </div>
