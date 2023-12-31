@@ -1,3 +1,6 @@
 <app-toolbar caption="Quiz Box App" icon="home"></app-toolbar>
 <div class="main">
+  <ng-container *ngIf="question$ | async as question">
+    <app-question-presenter [question]="question" />
+  </ng-container>
 </div>
