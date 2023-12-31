@@ -41,5 +41,10 @@ export class AppComponent {
     this.store.dispatch(action);
   }
 
+  generateNewQuiz() {
+    const action = userActions.generateQuiz();
+    this.store.dispatch(action);
+  }
+
 
 }
