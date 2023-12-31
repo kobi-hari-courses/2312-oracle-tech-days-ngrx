@@ -19,9 +19,13 @@ export const quizFeature = createFeature({
       selectCurrentQuestionIndex,
       (all, index) => all[index]
     );
+    const questionsCount = createSelector(selectQuestions, all => all.length)
     return {
         selectCurrentQuestionIndex, 
-        selectCurrentQuestion
+        selectCurrentQuestion, 
+        questionsCount, 
+        isQuizDone: createSelector(selectQuestions, selectAnswers, (questions, answers) => questions.length === answers.length), 
+        correctCount: createSelector(selectAnswers, all => all.filter(a => a.isCorrect).length)
     };
   },
 });
