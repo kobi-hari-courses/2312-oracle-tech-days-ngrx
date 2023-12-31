@@ -7,6 +7,7 @@
       <app-progress [value]="(indexOfCurrent$|async) ?? 0" [of]="(total$ | async) ?? 0"/>
       <app-question-presenter [question]="question" (answered)="answer($event)"/>
       <button mat-raised-button color="accent" (click)="restart()">Restart</button>
+      <button mat-raised-button color="primary" (click)="generateNewQuiz()">Generate New Quiz</button>
     </ng-container>  
   }
 </div>

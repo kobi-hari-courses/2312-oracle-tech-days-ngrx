@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { initialQuizState } from './quiz.state';
 import { userActions } from './users.actions';
 import { currentQuestionFromState } from './quiz.helpers';
+import { serviceActions } from './service.actions';
 
 export const quizReducer = createReducer(
   initialQuizState,
@@ -15,5 +16,10 @@ export const quizReducer = createReducer(
         userAnswer: action.userAnswer, 
         isCorrect: currentQuestionFromState(state).correctIndex === action.userAnswer
     }]
+  })), 
+  on(serviceActions.quizGenerated, (state, action) => ({
+    ...state,     
+    questions: action.questions, 
+    answers: []
   }))
 );
